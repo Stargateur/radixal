@@ -284,8 +284,8 @@ pub trait IntoDigits: PrimInt + Unsigned + WrappingAdd + WrappingMul {
             return Ok(false);
         }
 
-        a.sort();
-        b.sort();
+        a.sort_unstable();
+        b.sort_unstable();
         Ok(a == b)
     }
 
@@ -320,8 +320,8 @@ pub trait IntoDigits: PrimInt + Unsigned + WrappingAdd + WrappingMul {
             return false;
         }
 
-        a.sort();
-        b.sort();
+        a.sort_unstable();
+        b.sort_unstable();
         a == b
     }
 
@@ -343,25 +343,8 @@ pub trait IntoDigits: PrimInt + Unsigned + WrappingAdd + WrappingMul {
     ///
     /// assert!(n.is_binary_permutation(m));
     /// ```
-    #[cfg(feature = "std")]
     fn is_binary_permutation(self, other: Self) -> bool {
-        // This is reasonably efficient, but can be improved by short-circuiting.
-        let mut a: Vec<Self> = self
-            .into_binary_digits()
-            .filter(|&n| !n.is_zero())
-            .collect();
-        let mut b: Vec<Self> = other
-            .into_binary_digits()
-            .filter(|&n| !n.is_zero())
-            .collect();
-
-        if a.len() != b.len() {
-            return false;
-        }
-
-        a.sort();
-        b.sort();
-        a == b
+        self.count_ones() == other.count_ones()
     }
 }
 
