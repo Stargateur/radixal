@@ -303,7 +303,7 @@ pub trait IntoDigits: Copy + PartialOrd + Ord + WrappingAdd + WrappingMul + Unsi
     /// let n = 120_u32;
     /// let m = 2100_u32;
     ///
-    /// assert!(n.is_decimal_permutation(m).unwrap());
+    /// assert!(n.is_decimal_permutation(m));
     /// ```
     #[cfg(feature = "std")]
     fn is_decimal_permutation(self, other: Self) -> bool {
@@ -342,7 +342,7 @@ pub trait IntoDigits: Copy + PartialOrd + Ord + WrappingAdd + WrappingMul + Unsi
     /// let n = 12_u32;
     /// let m = 17_u32;
     ///
-    /// assert!(n.is_binary_permutation(m).unwrap());
+    /// assert!(n.is_binary_permutation(m));
     /// ```
     #[cfg(feature = "std")]
     fn is_binary_permutation(self, other: Self) -> bool {
