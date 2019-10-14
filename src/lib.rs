@@ -85,7 +85,7 @@ pub trait IntoDigits: PrimInt + Unsigned + WrappingAdd + WrappingMul {
     /// assert_eq!(n.nbr_digits(10).unwrap(), 3);
     /// ```
     fn nbr_digits(self, radix: Self) -> Result<usize, RadixError> {
-        self.into_digits(radix).map(DigitsIterator::count)
+        Ok(self.into_digits(radix)?.len())
     }
 
     /// Counts the number of binary digits.
