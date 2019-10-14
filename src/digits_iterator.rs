@@ -207,19 +207,12 @@ mod tests {
 
     #[test]
     fn test_types() {
-        use core::num::Wrapping;
         assert!(DigitsIterator::new(1_u8, 10).is_ok());
         assert!(DigitsIterator::new(1_u16, 10).is_ok());
         assert!(DigitsIterator::new(1_u32, 10).is_ok());
         assert!(DigitsIterator::new(1_u64, 10).is_ok());
         assert!(DigitsIterator::new(1_u128, 10).is_ok());
         assert!(DigitsIterator::new(1_usize, 10).is_ok());
-        assert!(DigitsIterator::new(Wrapping(1_u8), Wrapping(10)).is_ok());
-        assert!(DigitsIterator::new(Wrapping(1_u16), Wrapping(10)).is_ok());
-        assert!(DigitsIterator::new(Wrapping(1_u32), Wrapping(10)).is_ok());
-        assert!(DigitsIterator::new(Wrapping(1_u64), Wrapping(10)).is_ok());
-        assert!(DigitsIterator::new(Wrapping(1_u128), Wrapping(10)).is_ok());
-        assert!(DigitsIterator::new(Wrapping(1_usize), Wrapping(10)).is_ok());
     }
 
     #[test]

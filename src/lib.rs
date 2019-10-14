@@ -4,13 +4,12 @@
 
 pub mod digits_iterator;
 
-use core::num::Wrapping;
 use digits_iterator::{DigitsIterator, RadixError};
-use num_traits::{Unsigned, WrappingAdd, WrappingMul};
+use num_traits::{PrimInt, Unsigned, WrappingAdd, WrappingMul};
 
 /// An extension trait on unsigned integer types (`u8`, `u16`, `u32`, `u64`, `u128` and `usize`)
 /// and the corresponding `Wrapping` type.
-pub trait IntoDigits: Copy + PartialOrd + Ord + WrappingAdd + WrappingMul + Unsigned {
+pub trait IntoDigits: PrimInt + Unsigned + WrappingAdd + WrappingMul {
     #[doc(hidden)]
     const BINARY_RADIX: Self;
 
@@ -372,10 +371,6 @@ macro_rules! impl_digits {
             impl IntoDigits for $t {
                 const BINARY_RADIX: Self = 2;
                 const DECIMAL_RADIX: Self = 10;
-            }
-            impl IntoDigits for Wrapping<$t> {
-                const BINARY_RADIX: Self = Wrapping(2);
-                const DECIMAL_RADIX: Self = Wrapping(10);
             }
         )*
     };
