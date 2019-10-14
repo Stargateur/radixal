@@ -268,8 +268,11 @@ pub trait IntoDigits: PrimInt + Unsigned + WrappingAdd + WrappingMul {
     ///
     /// let n = 120_u32;
     /// let m = 2100_u32;
-    ///
     /// assert!(n.is_permutation(m, 10).unwrap());
+    ///
+    /// let n = 121_u32;
+    /// let m = 120_u32;
+    /// assert!(!n.is_permutation(m, 10).unwrap());
     /// ```
     #[cfg(feature = "std")]
     fn is_permutation(self, other: Self, radix: Self) -> Result<bool, RadixError> {
@@ -301,8 +304,11 @@ pub trait IntoDigits: PrimInt + Unsigned + WrappingAdd + WrappingMul {
     ///
     /// let n = 120_u32;
     /// let m = 2100_u32;
-    ///
     /// assert!(n.is_decimal_permutation(m));
+    ///
+    /// let n = 121_u32;
+    /// let m = 120_u32;
+    /// assert!(!n.is_decimal_permutation(m));
     /// ```
     #[cfg(feature = "std")]
     fn is_decimal_permutation(self, other: Self) -> bool {
@@ -340,8 +346,11 @@ pub trait IntoDigits: PrimInt + Unsigned + WrappingAdd + WrappingMul {
     ///
     /// let n = 12_u32;
     /// let m = 17_u32;
-    ///
     /// assert!(n.is_binary_permutation(m));
+    ///
+    /// let n = 12_u32;
+    /// let m = 7_u32;
+    /// assert!(!n.is_binary_permutation(m));
     /// ```
     fn is_binary_permutation(self, other: Self) -> bool {
         self.count_ones() == other.count_ones()
